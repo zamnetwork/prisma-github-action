@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 351:
@@ -4112,18 +4112,16 @@ const tag = core.getInput('tag');
 const image = `${registry}/${repository}:${tag}`;
 const tar = `${repository}.tar`;
 
-core.info(`Pulling docker image: ${image}`);
-(async() => {
+async function run() {
+    core.info(`Pulling docker image: ${image}`);
     const dockerPullArgs = [
         'pull',
         image
     ];
     await exec.exec('docker', dockerPullArgs)
         .catch(e => { core.setFailed(e.message); });
-})();
 
-core.info(`Building tarball: ${tar}`);
-(async() => {
+    core.info(`Building tarball: ${tar}`);
     const dockerSaveArgs = [
         'save',
         image,
@@ -4132,10 +4130,8 @@ core.info(`Building tarball: ${tar}`);
     ];
     await exec.exec('docker', dockerSaveArgs)
         .catch(e => { core.setFailed(e.message); });
-})();
 
-core.info('Running twistcli');
-(async() => {
+    core.info('Running twistcli');
     const twistcliArgs = [
         'twistcli',
         'images',
@@ -4152,10 +4148,13 @@ core.info('Running twistcli');
     ];
     await exec.exec('sudo', twistcliArgs)
         .catch(e => { core.setFailed(e.message); });
-})();
+}
+
+run();
 
 })();
 
 module.exports = __webpack_exports__;
 /******/ })()
 ;
+//# sourceMappingURL=index.js.map
