@@ -1,0 +1,19 @@
+
+name: 'Prisma Cloud Image Scan'
+description: 'Run Prisma Cloud Twistcli'
+inputs:
+  registry:
+    description: 'Docker registry'
+    required: true
+  repository:
+    description: 'Docker repository'
+    required: true
+  tag:
+    description: 'Docker repository tag'
+    required: true
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

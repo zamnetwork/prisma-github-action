@@ -1,0 +1,53 @@
+{
+  "name": "prisma-github-action",
+  "version": "1.0.0",
+  "description": "Github Action to execute Prisma Cloud Image Scan on github runner",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/exec": "^1.1.1"
+  },
+  "scripts": {
+    "build": "ncc build index.js",
+    "precommit": "lint-staged",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "cm": "git-cz",
+    "commitmsg": "validate-commit-msg"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zamnetwork/prisma-github-action"
+  },
+  "author": "Aditya Naik <anaik@zam.com>",
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0",
+    "@zam/eslint-config-zam": "^0.2.3",
+    "chai": "^4.1.2",
+    "cz-conventional-changelog": "3.2.0",
+    "eslint": "^5.2.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsdoc": "^4.2.0",
+    "eslint-plugin-mocha": "^5.1.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
+    "istanbul-reports": "^3.0.2",
+    "lint-staged": "^8.1.5",
+    "mocha": "^7.1.1",
+    "mockery": "^2.1.0",
+    "nyc": "^15.0.1",
+    "rewire": "^2.5.2",
+    "sinon": "^3.3.0",
+    "validate-commit-msg": "^2.14.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
